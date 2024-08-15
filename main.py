@@ -17,6 +17,10 @@ def count_words(words):
     return count
 
 
+# def count_characters(book):
+#     characters = {}
+
+
 def main():
     try:
         words = read_book().split()
@@ -24,6 +28,9 @@ def main():
 
     except FileNotFoundError:
         print("Could not find the specified file")
+
+    except UnicodeDecodeError:
+        print("Got a Unicode Decode Error, is the file plain text?")
 
 
 main()
