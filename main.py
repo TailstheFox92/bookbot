@@ -4,17 +4,13 @@ parser.add_argument("book_filepath")
 args = parser.parse_args()
 
 
-def read_book():
-    with open(args.book_filepath) as f:
-        file_contents = f.read()
-        return file_contents
+def read_book(book_path):
+    with open(book_path) as f:
+        return f.read()
 
 
 def count_words(words):
-    count = 0
-    for word in words:
-        count += 1
-    return count
+    return len(words)
 
 
 # def count_characters(book):
@@ -23,8 +19,11 @@ def count_words(words):
 
 def main():
     try:
-        words = read_book().split()
-        print(f"There are {count_words(words)} words in this book!")
+        text = read_book(args.book_filepath)
+        words = text.split()
+        num_words = count_words(words)
+
+        print(f"There are {num_words} words in this book!")
 
     except FileNotFoundError:
         print("Could not find the specified file")
